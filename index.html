@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Happy Merry Christmas Bé Dâu">
+    <link rel="shortcut icon" href="Image/icon.jpg" type="image/x-icon">
+    <title>NanLux - Merry Christmas Bé Dâu</title>
+    <!--CSS-->
+    <link href="Css/style.css" rel="stylesheet" type="text/css" />
+    <!--Javascript-->
+    <script src="Javascript/script.js"></script>
+</head>
+<body onload="thongbaopopup()">
+    <!-- Các hạt tuyết được thêm tự động bằng JavaScript -->
+        <div class="snowflakes-container"></div>
+    <!-- Thêm hình ảnh động GIF -->
+        <div class="noel">
+            <img src="https://img.pikbest.com/png-images/20191113/santa-gives-gifts-gif_2515372.png!f305cw" alt="Animated GIF">
+        </div>
+        <div class="gif">
+            <img src="Gif/santaclaus.gif" alt="Animated GIF" class="animated-gif">
+        </div>
+        
+    <!--Thư-->
+    <div id="mainImage">
+        <img src="https://img.pikbest.com/png-images/20191124/birthday-gift-gif-dynamic-map-packaging-box-cartoon-drawing-decoration_2737740.png!f305cw" onclick="openModal()" alt="Main Image">
+    </div>
+    
+    <div id="imageModal" class="modal">
+        <div class="overlay"></div>
+        <span onclick="closeModal()"><div class="close"><img src="Image/close.png"></div></span>
+        <img src="Image/bedau.png" class="modal-content" id="modalImage" alt="Modal Image">
+    </div>
+    <!--Tuyết rơi-->
+    <!-- Container cho tuyết rơi -->
+    <div id="snowfall"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const snowfallContainer = document.getElementById('snowfall');
+
+            function createSnowflake() {
+                const snowflake = document.createElement('div');
+                snowflake.className = 'snowflake';
+                snowflake.innerHTML = '❄';
+                snowflake.style.left = Math.random() * window.innerWidth + 'px';
+                snowflake.style.animationDuration = Math.random() * 3 + 2 + 's';
+                snowflake.style.animationDelay = Math.random() + 's';
+                snowfallContainer.appendChild(snowflake);
+
+                snowflake.addEventListener('animationend', function () {
+                    snowflake.remove();
+                    createSnowflake(); // Tạo một hạt tuyết mới sau khi hạt tuyết cũ kết thúc
+                });
+            }
+
+            function startSnowfall() {
+                setInterval(createSnowflake, 200); // Tạo một hạt tuyết mới mỗi 200ms
+            }
+
+            startSnowfall();
+        });
+    </script>
+    
+     <!--Nhạc-->
+     <audio id="background-music" loop>
+        <source src="Song/song.mp3" type="audio/mp3">
+    </audio>
+    
+    <!-- Thong bao pupup -->
+    <div class="tbpopup" id="tbpopup-1">
+        <div class="tboverlay"></div>
+        <div class="tbcontent" style="background: linear-gradient(to top, #89CFF0, #FFD1DC);">
+            <div style="font-size:25px;font-weight:bold">Xin chào Bé Dâu !</div>
+            <p style="font-size:16px;padding-top: 10px;">Bất ngờ chưa cục cưng, nhớ ấn vào hộp quà và chờ vài giây nha ! À xem thêm clip hai chúng ta nhảy nè ! <3 </p>
+            <p style="padding-top: 10px;">
+                <video loop id="myVideo" width="450" height="360" autoplay>
+                    <source src="Video/bedau.MOV" type="video/mp4">
+                </video>
+            </p>
+            <div class="start" ><img onclick="thongbaopopup(); startBackgroundMusic(); stopVideo();" src="Image/start.png" style="width: 80px; height: 80px; cursor: pointer;"></div>
+        </div>
+    </div>
+</body>
+
+<!-- js thong bao popup -->
+<script>
+    
+    function thongbaopopup(){
+    document.getElementById("tbpopup-1").classList.toggle("active");
+    }
+    </script>
+    </html>
